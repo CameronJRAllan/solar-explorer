@@ -1,0 +1,15 @@
+Basic Application
+  Hosted on AWS server - get dat shit set up
+  Basic System - Rendering a Cube
+  VR working
+    Rendering to Screen
+    Rendering to Oculus
+    Rendering to Cardboard
+  Basic Star System
+    Star skybox
+    Hardcoded planet positions, scales etc
+
+
+
+
+Lighting from sun - shading, turn on/off
