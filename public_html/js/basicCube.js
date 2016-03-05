@@ -1,17 +1,20 @@
-console.log("Hello, World!");
-
-
 $(document).ready(function() {
 	$.ajax({
 		url: "api/planet_data",
 		content: "application/json"
 	}).done(function(response) {
-		console.log(response);
+		main(response);
 	});
 });
 
 
-function main() {
+function main(planets) {
+	for (index in planets) {
+		var planet = planets[index];
+		console.log(planet.name);
+	}
+
+
 	var scene = new THREE.Scene();
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 	var renderer = new THREE.WebGLRenderer();
@@ -37,6 +40,3 @@ function main() {
 	render();
 
 }
-
-
-
