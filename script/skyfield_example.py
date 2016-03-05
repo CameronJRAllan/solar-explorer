@@ -34,51 +34,52 @@ i = 0
 information[i] = "Earth"
 i+=1; information[i] = earth.at(date).position.au
 i+=1; information[i] = 12756
-i+=1; information[i] = "Blue"
+i+=1; information[i] = "#0000FF"
 
 i+=1; information[i] = "Jupiter"
 i+=1; information[i] = jupiter.at(date).position.au
 i+=1; information[i] = 142984
-i+=1; information[i] = "Red"
-
+i+=1; information[i] = "#D2691E"
+  
 i+=1; information[i] = "Mars"
 i+=1; information[i] = mars.at(date).position.au
 i+=1; information[i] = 6792
-i+=1; information[i] = "Red"
+i+=1; information[i] = "#A52A2A"
 
 i+=1; information[i] = "Mercury"
 i+=1; information[i] = mercury.at(date).position.au
 i+=1; information[i] = 5427
-i+=1; information[i] = "Grey"
+i+=1; information[i] = "#D3D3D3"
 
 i+=1; information[i] = "Moon"
 i+=1; information[i] = moon.at(date).position.au
 i+=1; information[i] = 3475
-i+=1; information[i] = "Grey"
+i+=1; information[i] = "#A9A9A9"
 
 i+=1; information[i] = "Pluto"
 i+=1; information[i] = pluto.at(date).position.au
 i+=1; information[i] = 2370
-i+=1; information[i] = "Grey"
+i+=1; information[i] = "#D3D3D3"
 
 i+=1; information[i] = "Sun"
 i+=1; information[i] = sun.at(date).position.au
 i+=1; information[i] = 1391000
-i+=1; information[i] = "Yellow"
+i+=1; information[i] = "#F0E68C"
 
 i+=1; information[i] = "Saturn"
 i+=1; information[i] = saturn.at(date).position.au
 i+=1; information[i] = 120536
-i+=1; information[i] = "Yellow"
+i+=1; information[i] = "#DAA520"
 
 i+=1; information[i] = "Venus"
 i+=1; information[i] = venus.at(date).position.au
 i+=1; information[i] = 12104
-i+=1; information[i] = "Red"
+i+=1; information[i] = "#DC143C"
 
 i+=1; information[i] = "Uranus"
 i+=1; information[i] = uranus.at(date).position.au
-i+=1; information[i] = "Blue"
+i+=1; information[i] = 50724
+i+=1; information[i] = "#9370DB"
 
 #print information
 for key in information:
