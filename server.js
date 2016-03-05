@@ -1,9 +1,13 @@
 // Libraries
 var express = require('express');
+var morgan  = require('morgan');
 var exec = require('child_process').exec;
 
 // Create the server instance
 var app = express();
+
+// Report connections to console
+app.use(morgan('dev'));
 
 // Serve the web content
 app.use(express.static('public_html'));
