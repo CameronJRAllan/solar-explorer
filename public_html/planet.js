@@ -1,6 +1,8 @@
 function planet(planetName, planetVector, planetDiameter, planetColour) {
+    // The name of this planet
     this.name = planetName;
 
+    //
     this.vector = new THREE.Vector3(parseInt(planetVector.x * 50),   //Our actual final vector.
                                     parseInt(planetVector.y * 50),
                                     parseInt(planetVector.z * 50));
@@ -13,15 +15,17 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
     this.geometry = new THREE.SphereGeometry(planetDiameter*0.5*50*Math.pow(6.68459,-9), 32, 32);
     console.log(planetDiameter*0.5*Math.pow(6.68459,-9));
 
-    var heightMap = new THREE.TextureLoader().load( "res/planetBump.jpg");
+    console.log(planetDiameter*0.5*50*Math.pow(6.68459,-9))
 
+    //
+    var heightMap = new THREE.TextureLoader().load( "res/planetBump.jpg");
     heightMap.anisotropy = 4;
     heightMap.repeat.set( 0.998, 0.998 );
     heightMap.offset.set( 0.001, 0.001 );
     heightMap.wrapS = heightMap.wrapT = THREE.RepeatWrapping;
     heightMap.format = THREE.RGBFormat;
 
-    this.material = new THREE.MeshLambertMaterial();
+    this.material = new THREE.MeshLambertMaterial({wireframe: true});
     this.material.color = new THREE.Color(planetColour);
     this.material.map = heightMap;
 
@@ -31,9 +35,20 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
 
     this.mesh.position.set(this.vector.x, this.vector.y, this.vector.z); //Set mesh's position to vector.
 
+    //TEMP
+    var SCALE = 100;
+    this.mesh.scale.set(SCALE, SCALE, SCALE);
+
     //Example method.
     //this.retCirc = function () { return ( Math.PI * this.radius * 2 ); };
+
+    // Renders this planet into the scene
+    this.render = function (name) {
+        this.lastName = name;
+    };
 }
+
+
 
 //Example usage
 //var earth = new planet("Earth","vector", 221321);
