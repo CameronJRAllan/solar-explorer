@@ -1,15 +1,9 @@
 function planet(planetName, planetVector, planetDiameter, planetColour) {
     this.name = planetName;
 
-    var tempVector = planetVector.split(" +"); //Splits by one or more spaces, regex
-
-    //Now remove the [ in the first item and the ] in the last.
-    tempVector[0].slice(1); //Remove [.
-    tempVector[2].slice(0, -1) //Remove ]. (Negative numbers are relative to the end).
-
-    this.vector = new Three.Vector3(parseInt(vector[0]),   //Our actual final vector.
-                                    parseInt(vector[1]), 
-                                    parseInt(vector[2]));
+    this.vector = new Three.Vector3(parseInt(planetVector[0]),   //Our actual final vector.
+                                    parseInt(planetVector[1]), 
+                                    parseInt(planetVector[2]);
 
     this.diameter = planetDiameter;
     this.colour = planetColour;

@@ -17,12 +17,12 @@ function createPlanets(planets) {
 
   for (index in planets) {
     //Testing.
-    var planet = planets[index];
-    console.log(planet.name);
+    var jPlanet = planets[index];
+    console.log(jPlanet.name);
 
     //Add this planet to the array.
-    planetArr[index] = new planet(planet.name, planet.location, 
-                                planet.diameter, planet.colour)
+    planetArr[index] = new planet(jPlanet.name, jPlanet.location, 
+                                jPlanet.diameter, jPlanet.colour)
 
     scene.add(planetArr[index].mesh);
     }
