@@ -22,17 +22,11 @@ function convertLocation(location) {
 	return {"x":x, "y": y, "z": z}
 }
 
-// Return the planet data from the python script on /api/planet_data
-app.get('/api/planet_data', function(req, res) {
-	res.set({ 'Content-Type': 'application/json' });
-	res.end(getPlanetJSON("2015", "2", "5", "12"));
-});
-
 // Allow the user to specify their own date for the planet data
-app.get('/api/planet_data/:year/:month/:day/:hour'), function(req, res) {
+app.get('/api/planet_data/:year/:month/:day/:hour', function(req, res) {
 	res.set({ 'Content-Type': 'application/json' });
-	res.end(getPlanetJSON(req.params.year, req.params.month, req.params.day, req.params.hour));
-}
+	sendPlanetJSON(res, req, req.params.year, req.params.month, req.params.day, req.params.hour);
+});
 
 function sendPlanetJSON(res, req, Year, Month, Day, Hour) {
 	var apiCall = "python script/better_skyfield.py " + Year + " " + Month + " " + Day + " " + Hour; 
