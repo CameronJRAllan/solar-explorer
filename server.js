@@ -23,42 +23,49 @@ function convertLocation(location) {
 }
 
 	// Return the planet data from the python script on /api/planet_data
-	app.get('/api/planet_data', function(req, res) 
-	{
-		if arguments.length == 3:
-			var apiCall = "python script/skyfield_example.py " + arguments[1] 
-																									 + " " + arguments[2] 
-																									 + " " + arguments[3];  
-		else:
-			var apiCall = "python script/skyfield_example.py";
+app.get('/api/planet_data', function(req, res) 
+{
+	res.set({ 'Content-Type': 'application/json' });
+	res.end(getPlanetJSON("", "", "", ""));
+});
+
+app.get('/api/planet_data/:year/:month/:day/:hour'), function(req, res) 
+{
+	res.set({ 'Content-Type': 'application/json' });
+	res.end(getPlanetJSON(req.params.year, req.params.month, req.params.day, req.params.hour));
+}
+
+function getPlanetJSON(Year, Month, Day, Hour)
+{
+		var apiCall = "python script/skyfield_example.py " + Year 
+																									 + " " + Month 
+																									 + " " + Day
+																									 + " " + Hour; 
 
   	exec(apiCall, function(error, stdout, stderr)
   	{
+			// Split into lines
+			var items = stdout.replace(/(\r\n|\n|\r)/gm,"").split(",");
 
-		// Split into lines
-		var items = stdout.replace(/(\r\n|\n|\r)/gm,"").split(",");
-
-		// Parse the lines into objects
-		var objects = [];
-		for (var i = 0; i < items.length; i++)
-		{
-			if (i % 4 == 0 && i >= 1)
+			// Parse the lines into objects
+			var objects = [];
+			for (var i = 0; i < items.length; i++)
 			{
-				var name = items[i-4];
-				var location = convertLocation(String(items[i-3]));
-				var diameter = parseInt(items[i-2]);
-				var colourBase = items[i-1].str.substring(0,6);
-				var colourShade = items[i-1].str.substring(8,14);
-				var object = {"name": name, "location": location, "diameter": diameter, "colour": colour}
-				objects.push(object);
+				if (i % 4 == 0 && i >= 1)
+				{
+					var name = items[i-4];
+					var location = convertLocation(String(items[i-3]));
+					var diameter = parseInt(items[i-2]);
+					var colourBase = items[i-1].str.substring(0,6);
+					var colourShade = items[i-1].str.substring(8,14);
+					var object = {"name": name, "location": location, "diameter": diameter, "colour": colour}
+					objects.push(object);
+				}
 			}
-
 		}
-
-		res.set({ 'Content-Type': 'application/json' });
-		res.send(JSON.stringify(objects));
-   });
-});
+		return JSON.stringify(objects);
+  };
+}
 
 // Start the server
 var server = app.listen(80, function () {
