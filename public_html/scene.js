@@ -39,12 +39,15 @@ document.body.appendChild(renderer.domElement);
 
 // Create a three.js scene.
 var scene = new THREE.Scene();
+scene.add( new THREE.AmbientLight( 0x444444 ) );
 
 // Create a three.js camera.
 var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 10000);
 camera.position.y = 200;
 camera.position.x = 200;
 camera.rotationY = 3.1412/2;
+
+
 
 // Apply VR headset positional data to camera.
 var controls = new THREE.VRControls(camera);
