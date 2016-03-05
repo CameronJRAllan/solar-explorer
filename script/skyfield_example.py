@@ -31,7 +31,7 @@ information={}
 i = 0
 
 # Store name
-i+=1; information[i] = "Earth"
+information[i] = "Earth"
 i+=1; information[i] = earth.at(date).position.au
 i+=1; information[i] = 12756
 i+=1; information[i] = "Blue"
@@ -77,7 +77,7 @@ i+=1; information[i] = 12104
 i+=1; information[i] = "Red"
 
 i+=1; information[i] = "Uranus"
-i+=1; information[i] = uranus.at(date).position.au
+i+=1; information[i] = [uranus.at(date).position.au[0],uranus.at(date).position.au[1],uranus.at(date).position.au[2]]
 i+=1; information[i] = 51118
 i+=1; information[i] = "Blue"
 
