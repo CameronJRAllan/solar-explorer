@@ -41,7 +41,10 @@ document.body.appendChild(renderer.domElement);
 var scene = new THREE.Scene();
 
 // Create a three.js camera.
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 10000);
+camera.position.y = 200;
+camera.position.x = 200;
+camera.rotationY = 3.1412/2;
 
 // Apply VR headset positional data to camera.
 var controls = new THREE.VRControls(camera);
@@ -49,10 +52,6 @@ var controls = new THREE.VRControls(camera);
 // Apply VR stereo rendering to renderer.
 var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
-
-
-
-  
 
 // Create a VR manager helper to enter and exit VR mode.
 var params = {

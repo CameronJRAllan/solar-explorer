@@ -9,10 +9,11 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
     this.colour = planetColour;
 
     //Second and third values are essentially detail level.
-    this.geometry = new THREE.SphereGeometry(planetDiameter/2, 32, 32);
-    this.geometry.scale(10);
+    this.geometry = new THREE.SphereGeometry(planetDiameter/20000, 32, 32);
+    console.log(planetDiameter);
 
-    this.material = new THREE.MeshBasicMaterial( {color: 0xffff00});
+    this.material = new THREE.MeshBasicMaterial( {color: Math.random() * 0xffffff} );
+//    this.material = new THREE.MeshNormalMaterial();
 
     this.mesh = new THREE.Mesh(this.geometry, this.material); 
 
