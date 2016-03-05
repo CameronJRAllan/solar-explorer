@@ -46,9 +46,9 @@ function getPlanetJSON(Year, Month, Day, Hour) {
 				var name = items[i-4];
 				var location = convertLocation(String(items[i-3]));
 				var diameter = parseInt(items[i-2]);
-				var colourBase = items[i-1].str.substring(0,6);
-				var colourShade = items[i-1].str.substring(8,14);
-				var object = {"name": name, "location": location, "diameter": diameter, "colour": colour}
+				var colourBase = items[i-1].substring(0,6);
+				var colourShade = items[i-1].substring(8,14);
+				var object = {"name": name, "location": location, "diameter": diameter, "colour": colourBase}
 				objects.push(object);
 			}
 		}

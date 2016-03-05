@@ -21,20 +21,13 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
     heightMap.wrapS = heightMap.wrapT = THREE.RepeatWrapping;
     heightMap.format = THREE.RGBFormat;
 
+    var material = new THREE.MeshLambertMaterial();
+    this.material.color = new THREE.Color(planetColour);
+    this.material.map = heightMap;
 
+//  this.material = new THREE.MeshNormalMaterial();
 
-    var material = new THREE.MeshPhongMaterial( {
-        color: color: Math.random() * 0xffffff,
-        specular: 0x222222,
-        shininess: 25,
-        bumpMap: heightMap,
-        bumpScale: 12
-    } );
-
-
-//    this.material = new THREE.MeshNormalMaterial();
-
-    this.mesh = new THREE.Mesh(this.geometry, this.material); 
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
 
     this.mesh.position.set(this.vector.x, this.vector.y, this.vector.z); //Set mesh's position to vector.
 
