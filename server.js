@@ -25,7 +25,7 @@ function convertLocation(location) {
 // Return the planet data from the python script on /api/planet_data
 app.get('/api/planet_data', function(req, res) {
 	res.set({ 'Content-Type': 'application/json' });
-	res.end(getPlanetJSON("", "", "", ""));
+	res.end(getPlanetJSON("2015", "2", "5", "12"));
 });
 
 // Allow the user to specify their own date for the planet data
@@ -34,26 +34,10 @@ app.get('/api/planet_data/:year/:month/:day/:hour'), function(req, res) {
 	res.end(getPlanetJSON(req.params.year, req.params.month, req.params.day, req.params.hour));
 }
 
-function getPlanetJSON(Year, Month, Day, Hour) {
-	var apiCall = "python script/skyfield_example.py " + Year + " " + Month + " " + Day + " " + Hour; 
-	var objects = [];
- 	exec(apiCall, function(error, stdout, stderr) {
-		// Split into lines
-		var items = stdout.replace(/(\r\n|\n|\r)/gm,"").split(",");
-		// Parse the lines into objects
-		for (var i = 0; i < items.length; i++) {
-			if (i % 4 == 0 && i >= 1) {
-				var name = items[i-4];
-				var location = convertLocation(String(items[i-3]));
-				var diameter = parseInt(items[i-2]);
-				var colourBase = items[i-1].substring(0,6);
-				var colourShade = items[i-1].substring(8,14);
-				var object = {"name": name, "location": location, "diameter": diameter, "colour": colourBase}
-				objects.push(object);
-			}
-		}
-	});
-	return JSON.stringify(objects);
+function sendPlanetJSON(res, req, Year, Month, Day, Hour) {
+	var apiCall = "python script/better_skyfield.py " + Year + " " + Month + " " + Day + " " + Hour; 
+	var json;
+ 	exec(apiCall, function(error, stdout, stderr) { res.end(stdout); });
 }
 
 // Start the server
