@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
   $.ajax({
     url: "api/planet_data",
     content: "application/json"
@@ -7,12 +7,13 @@ $(document).ready(function() {
   });
 });
 
+  var planetArr = [];  //This needs ot be global?!
+
+
 function createPlanets(planets) {
    console.log("Entering createPlanets");	//DEBUG
 
   //Create planet array to render.
-  var planetArr = planets.length;  //This needs ot be global?!
-
    console.log(planets.length);
 
   for (index in planets) {
@@ -21,10 +22,10 @@ function createPlanets(planets) {
     console.log(jPlanet.name);
 
     //Add this planet to the array.
-    planetArr[index] = new planet(jPlanet.name, jPlanet.location, 
+    this.planetArr[index] = new planet(jPlanet.name, jPlanet.location, 
                                 jPlanet.diameter, jPlanet.colour)
 
-    scene.add(planetArr[index].mesh);
+    scene.add(this.planetArr[index].mesh);
     }
 }
 

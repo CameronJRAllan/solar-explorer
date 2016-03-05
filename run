@@ -1,0 +1,1 @@
+sudo killall -9 nodejs && sudo nodejs /home/ubuntu/solar-explorer/server.js
