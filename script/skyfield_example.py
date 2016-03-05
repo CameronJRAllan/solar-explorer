@@ -18,7 +18,7 @@ venus = planets['venus']
 uranus = planets['uranus barycenter']
 
 # Set arguments to variables
-if sys.argv.length == 0:
+if len(sys.argv) == 0:
   date = JulianDate(utc=now())
 else:
   hour = int(sys.argv[4])
