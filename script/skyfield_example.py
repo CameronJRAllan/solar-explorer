@@ -18,13 +18,14 @@ venus = planets['venus']
 uranus = planets['uranus barycenter']
 
 # Set arguments to variables
-hour = int(sys.argv[4])
-day = int(sys.argv[3])
-month = int(sys.argv[2])
-year = int(sys.argv[1])
-
-# Date format is YEAR, MONTH, DAY
-date = JulianDate(utc=(year, month, day, hour))
+if sys.argv.length == 0:
+  date = JulianDate(utc=now())
+else:
+  hour = int(sys.argv[4])
+  day = int(sys.argv[3])
+  month = int(sys.argv[2])
+  year = int(sys.argv[1])
+  date = JulianDate(utc=(year, month, day, hour))
 
 # Declare dictionary
 information={}
