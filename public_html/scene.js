@@ -20,6 +20,23 @@ var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
 
 
+$(document).ready(function() {
+  $.ajax({
+    url: "api/planet_data",
+    content: "application/json"
+  }).done(function(response) {
+    main(response);
+  });
+});
+
+
+
+for (index in planets) {
+  var planet = planets[index];
+  console.log(planet.name);
+}
+  
+
 // Create a VR manager helper to enter and exit VR mode.
 var params = {
   hideButton: false, // Default: false.

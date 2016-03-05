@@ -11,5 +11,5 @@ Basic Application
 
 
 
-
-Lighting from sun - shading, turn on/off
+Optional
+  Lighting from sun - shading, turn on/off
