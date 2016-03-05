@@ -2,7 +2,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
     this.name = planetName;
 
     this.vector = new THREE.Vector3(parseInt(planetVector.x * 50),   //Our actual final vector.
-                                    parseInt(planetVector.y * 50), 
+                                    parseInt(planetVector.y * 50),
                                     parseInt(planetVector.z * 50));
 
     this.diameter = planetDiameter/1000;
@@ -21,7 +21,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour) {
     heightMap.wrapS = heightMap.wrapT = THREE.RepeatWrapping;
     heightMap.format = THREE.RGBFormat;
 
-    var material = new THREE.MeshLambertMaterial();
+    this.material = new THREE.MeshLambertMaterial();
     this.material.color = new THREE.Color(planetColour);
     this.material.map = heightMap;
 

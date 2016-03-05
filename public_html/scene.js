@@ -46,14 +46,16 @@ function createPlanets(planets) {
   //Create planet array to render.
    console.log(planets.length);
 
-   // Iterate through all of the 
+   // Iterate through all of the
    for (index in planets) {
     // Get the current planet
     var jPlanet = planets[index];
     console.log(jPlanet.name);
+    console.log(jPlanet);
+
 
     //Add this planet to the array.
-    this.planetArr[index] = new planet(jPlanet.name, jPlanet.location, jPlanet.diameter, jPlanet.colour)
+    this.planetArr[index] = new planet(jPlanet.name, jPlanet.vector, jPlanet.diameter, jPlanet.colour)
 
       scene.add(this.planetArr[index].mesh);
     }
