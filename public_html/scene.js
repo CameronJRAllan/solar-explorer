@@ -85,5 +85,20 @@ function onKey(event) {
     controls.resetSensor();
   }
 }
+window.addEventListener('keydown', onKey, true);
 
+// Forward the position by 10 days when '<' pressed.
+function onKey(event) {
+  if (event.keyCode == 60) { // z
+    
+  }
+}
+window.addEventListener('keydown', onKey, true);
+
+// Go back 10 days when '>' pressed.
+function onKey(event) {
+  if (event.keyCode == 62) { // z
+    
+  }
+}
 window.addEventListener('keydown', onKey, true);
