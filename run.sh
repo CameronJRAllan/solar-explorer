@@ -1,1 +1,1 @@
-sudo node server.js
+sudo nodejs server.js
