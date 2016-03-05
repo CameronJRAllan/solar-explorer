@@ -1,3 +1,31 @@
+
+$(document).ready(function() {
+  $.ajax({
+    url: "api/planet_data",
+    content: "application/json"
+  }).done(function(response) {
+    main(response);
+  });
+});
+
+function createPlanets(planets) {
+  //Create planet array to render.
+  var planetArr = len(planets);  //This needs ot be global?!
+
+  for (index in planets) {
+    //Testing.
+    var planet = planets[index];
+    console.log(planet.name);
+
+    //Add this planet to the array.
+    planetArr[index] = new planet(planet.name, planet.location, 
+                                planet.diameter, planet.colour)
+
+    scene.add(planetArr[index].mesh);
+    }
+}
+
+
 // Setup three.js WebGL renderer. Note: Antialiasing is a big performance hit.
 // Only enable it if you actually need to.
 var renderer = new THREE.WebGLRenderer({antialias: false});
@@ -20,21 +48,7 @@ var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
 
 
-$(document).ready(function() {
-  $.ajax({
-    url: "api/planet_data",
-    content: "application/json"
-  }).done(function(response) {
-    main(response);
-  });
-});
 
-
-
-for (index in planets) {
-  var planet = planets[index];
-  console.log(planet.name);
-}
   
 
 // Create a VR manager helper to enter and exit VR mode.
