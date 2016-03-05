@@ -77,8 +77,13 @@ i+=1; information[i] = 12104
 i+=1; information[i] = "Red"
 
 i+=1; information[i] = "Uranus"
-i+=1; information[i] = [uranus.at(date).position.au[0],uranus.at(date).position.au[1],uranus.at(date).position.au[2]]
-i+=1; information[i] = 51118
+i+=1; information[i] = uranus.at(date).position.au
 i+=1; information[i] = "Blue"
 
-print information
+#print information
+for key in information:
+	value = information[key]
+	print str(value)
+	if key < len(information)-1:
+		print ","
+
