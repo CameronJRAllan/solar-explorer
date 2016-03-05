@@ -1,16 +1,19 @@
-
 $(document).ready(function() {
   $.ajax({
     url: "api/planet_data",
     content: "application/json"
   }).done(function(response) {
-    main(response);
+    createPlanets(response);
   });
 });
 
 function createPlanets(planets) {
+   console.log("Entering createPlanets");	//DEBUG
+
   //Create planet array to render.
-  var planetArr = len(planets);  //This needs ot be global?!
+  var planetArr = planets.length;  //This needs ot be global?!
+
+   console.log(planets.length);
 
   for (index in planets) {
     //Testing.
