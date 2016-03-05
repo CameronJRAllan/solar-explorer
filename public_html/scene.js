@@ -1,13 +1,43 @@
+
+// Calls the web service and invokes the callback when the response in recieved
+// The callback looks like this: function(data) where data is an array of objects
+function getPlanetData(year, month, day, hour, callback) {
+  // The request url
+  var requestUrl = "api/planet_data/" + year.toString() + "/" + month.toString() + "/" + day.toString() + "/" + hour.toString();
+
+  // Make the AJAX call
+  $.ajax({ url: requestUrl, content: "application/json"}).done(
+    function(response) {
+      createPlanets(response);
+    });
+}
+
+// Gets the current planet data and returns the response in a callback
+// The callback looks like this: function(data) where data is an array of objects
+function getPlanetDataNow(callback) {
+  // Get the current date for the parameters
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth();
+  var day = now.getDay();
+  var hour = now.getHours();
+
+  // Get the planet data
+  getPlanetData(year, month, day, hour, callback);
+}
+
+
+
+// Invoked when the window loads and the app can be started
 $(window).load(function() {
-  $.ajax({
-    url: "api/planet_data",
-    content: "application/json"
-  }).done(function(response) {
-    createPlanets(response);
+  // Call the web service to get the planet data and pass the response onto GL to create the planets
+  getPlanetDataNow(function(data) {
+    createPlanets(data);
   });
 });
 
-  var planetArr = [];  //This needs ot be global?!
+
+var planetArr = [];  //This needs ot be global?!
 
 
 function createPlanets(planets) {
@@ -16,16 +46,16 @@ function createPlanets(planets) {
   //Create planet array to render.
    console.log(planets.length);
 
-  for (index in planets) {
-    //Testing.
+   // Iterate through all of the 
+   for (index in planets) {
+    // Get the current planet
     var jPlanet = planets[index];
     console.log(jPlanet.name);
 
     //Add this planet to the array.
-    this.planetArr[index] = new planet(jPlanet.name, jPlanet.location, 
-                                jPlanet.diameter, jPlanet.colour)
+    this.planetArr[index] = new planet(jPlanet.name, jPlanet.location, jPlanet.diameter, jPlanet.colour)
 
-    scene.add(this.planetArr[index].mesh);
+      scene.add(this.planetArr[index].mesh);
     }
 }
 
@@ -71,7 +101,7 @@ function animate(timestamp) {
   lastRender = timestamp;
 
   // Update VR headset position and apply to camera.
-  controls.update();  
+  controls.update();
 
   // Render the scene through the manager.
   manager.render(scene, camera, timestamp);
@@ -93,7 +123,7 @@ window.addEventListener('keydown', onKey, true);
 // Forward the position by 10 days when '<' pressed.
 function onKey(event) {
   if (event.keyCode == 60) { // z
-    
+
   }
 }
 window.addEventListener('keydown', onKey, true);
@@ -101,7 +131,7 @@ window.addEventListener('keydown', onKey, true);
 // Go back 10 days when '>' pressed.
 function onKey(event) {
   if (event.keyCode == 62) { // z
-    
+
   }
 }
 window.addEventListener('keydown', onKey, true);
