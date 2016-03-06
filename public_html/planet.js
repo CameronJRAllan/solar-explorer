@@ -5,7 +5,7 @@ var MESH_SCALE = 100;
 var DISTANCE_SCALE = 2000;
 
 // Constructor for the planet object
-function planet(planetName, planetVector, planetDiameter, planetColour, planetType)
+function planet(planetName, planetVector, planetDiameter, planetColour)
 {
     // Store member variables
     this.name = planetName;
@@ -36,6 +36,8 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
 }
 
 
+    // Load the heightmap (Maybe this should only be done once.....?)
+    var heightMap = new THREE.TextureLoader().load("res/planetBump.jpg");
     heightMap.anisotropy = 4;
     heightMap.repeat.set( 0.998, 0.998 );
     heightMap.offset.set( 0.001, 0.001 );
@@ -46,19 +48,19 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
     var args = {};
     if (WIREFRAME == true) args['wireframe'] = true;
     this.material = new THREE.MeshLambertMaterial(args);
-    this.material.color = new THREE.Color(planetColour);
+    this.material.color = new THREE.Color(this.colour);
     this.material.map = heightMap;
-    this.material.colour
 
-    // Create the mesh for this planet.
+    // Create the mesh for thus planet
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.position.set(this.position.x, this.position.y, this.position.z);
     this.mesh.scale.set(MESH_SCALE, MESH_SCALE, MESH_SCALE);
 
-    // Renders this planet into the scene
-    //this.render = function (name) {
-    //    this.lastName = name;
-    //};
+    // Set the position of this planet
+    this.setPosition = function(x, y, z) {
+      this.position = new THREE.Vector3(x * GLOBAL_SCALE, y * GLOBAL_SCALE, z * GLOBAL_SCALE);
+      this.mesh.position.set(this.position.x, this.position.y, this.position.z);
+    };
 
     // Set the position of this
     this.setPosition = function(x, y, z) {
@@ -66,13 +68,11 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
       this.mesh.position.set(x,y,z);
     }
 
+    // Returns the mesh for this planet
+    this.getMesh = function() {
+      return this.mesh;
+    }
 }
-
-
-
-//Example usage
-//var earth = new planet("Earth","vector", 221321);
-//earth.retCirc();
 
 // Converts input kilometers to astronomical units
 function toAstronomicalUnits(km) {

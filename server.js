@@ -29,7 +29,7 @@ app.get('/api/planet_data/:year/:month/:day/:hour', function(req, res) {
 });
 
 function sendPlanetJSON(res, req, Year, Month, Day, Hour) {
-	var apiCall = "python2 script/better_skyfield.py " + Year + " " + Month + " " + Day + " " + Hour; 
+	var apiCall = "python script/better_skyfield.py " + Year + " " + Month + " " + Day + " " + Hour; 
 	var json;
  	exec(apiCall, function(error, stdout, stderr) { res.end(stdout); });
 }

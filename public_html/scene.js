@@ -66,14 +66,14 @@ function updatePlanets() {
         getPlanet(item.name).setPosition(item.vector[0], item.vector[1], item.vector[2]);
       } else {
         // Create a planet object
-        var planetObj = new planet(item.name, item.vector, item.diameter, item.colour, item.planetType);
+        var planetObj = new planet(item.name, item.vector, item.diameter, item.colour);
 
         // Store the planet for future reference
         planets[i] = planetObj
         planetMap[item.name] = planetObj;
 
         // Add the planet to the scene
-        scene.add(this.planets[i].mesh);
+        scene.add(this.planets[i].getMesh());
       }
     }
   });
@@ -83,7 +83,7 @@ function updatePlanets() {
 // Function that gets called whenever a key is pressed down
 function onKey(event) {
   // key ','
-  if (event.keyCode == 188) { // <
+  if (event.keyCode == 188) {
     // Lower the date by 10 days
     console.log("< key");
     time.setTime(time.getTime() - (1000*60*60*24));
@@ -125,6 +125,7 @@ function targetPlanet(name) {
 // Updates the view of the camera
 function updateView() {
   console.log("updateView has been invoked.");
+
 
   // If there is a target planet then look at the target planet
   if (target != null) {
@@ -198,8 +199,6 @@ function main() {
   var raycaster = new THREE.Raycaster();
   var fakemouse = new THREE.Vector2(0, 0);
 
-
-    targetPlanet("Earth");
   // Request animation frame loop function
   var lastRender = 0;
   function animate(timestamp) {
@@ -212,20 +211,21 @@ function main() {
     for (var i=1; i<scene.children.length; i++)
         scene.children[i].material.emissive = {"r":0, "b":0, "g":0};
 
-        // Find planet under cursor and make it green
-        raycaster.setFromCamera(fakemouse, camera);
-        var intersectors = raycaster.intersectObjects(scene.children);
-        if (intersectors.length > 0) {
-          intersectors[0].object.material.emissive = {"r":0.2, "b":0.2, "g":0.2};
-        }
-
-        // Render the scene through the manager.
-        manager.render(scene, camera, timestamp);
-        requestAnimationFrame(animate);
+    // Find planet under cursor and make it green
+    raycaster.setFromCamera(fakemouse, camera);
+    var intersectors = raycaster.intersectObjects(scene.children);
+    if (intersectors.length > 0) {
+      intersectors[0].object.material.emissive = {"r":0.2, "b":0.2, "g":0.2};
     }
 
-  targetPlanet("Earth");
-
-  // Kick off animation loop
-  animate(performance ? performance.now() : Date.now());
+    // Render the scene through the manager.
+    manager.render(scene, camera, timestamp);
+    requestAnimationFrame(animate);
+  }
+// Kick off animation loop
+animate(performance ? performance.now() : Date.now());
+targetPlanet("Earth");
 }
+
+
+
