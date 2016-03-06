@@ -3,7 +3,7 @@ import sys
 import json
 
 # Load ephemeris
-planets = load('de421.bsp')
+planets = load('de422.bsp')
 
 # Define planets
 earth   = planets['earth barycenter']
