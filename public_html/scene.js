@@ -109,12 +109,27 @@ var controls = new THREE.VRControls(camera);
 var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
 
+
+var geometry = new THREE.SphereGeometry(9000, 60, 40);  
+var material = new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('res/skySphere.jpg') } );
+
+
+skyBox = new THREE.Mesh(geometry, material);  
+//Flip so it's internally textured.
+skyBox.scale.set(-1, 1, 1);  
+skyBox.eulerOrder = 'XZY';  
+skyBox.renderDepth = 1000.0;  
+scene.add(skyBox);  
+
+
 // Create a VR manager helper to enter and exit VR mode.
 var params = {
   hideButton: false, // Default: false.
 
   isUndistorted: false // Default: false.
 };
+
+
 var manager = new WebVRManager(renderer, effect, params);
 
 // Set up raycaster to hilight planets
