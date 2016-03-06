@@ -51,7 +51,9 @@ function createPlanets(planets) {
     // Get the current planet
     var jPlanet = planets[index];
     console.log(jPlanet.name);
-    console.log(jPlanet);
+    //console.log(jPlanet);
+
+    //console.log(jPlanet);
 
 
     //Add this planet to the array.
