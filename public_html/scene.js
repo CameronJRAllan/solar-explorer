@@ -50,33 +50,34 @@ function updatePlanets() {
         getPlanet(item.name).setPosition(item.vector[0], item.vector[1], item.vector[2]);
       } else {
         // Create a planet object
-        var planetObj = new planet(item.name, item.vector, item.diameter, item.colour);
+        var planetObj = new planet(item.name, item.vector, item.diameter, item.colour, item.planetType);
 
         // Store the planet for future reference
         planets[i] = planetObj
         planetMap[item.name] = planetObj;
 
         // Add the planet to the scene
-        scene.add(this.planets[i].getMesh());
+        scene.add(this.planets[i].mesh);
       }
     }
   });
 }
 
-
 // Function that gets called whenever a key is pressed down
 function onKey(event) {
   // key ','
-  if (event.keyCode == 188) {
+  if (event.keyCode == 188) { // <
     // Lower the date by 10 days
     console.log("< key");
     time.setTime(time.getTime() - (1000*60*60*24));
     updatePlanets();
-  } else if (event.keyCode == 190){
+  } else if (event.keyCode == 190){ // >
     // Lower the date by 10 days
     console.log("> key");
     time.setTime(time.getTime() + (1000*60*60*24));
     updatePlanets();
+  } else if (event.keyCode == 90){ //Z
+    //controls.zeroSensor();
   }
 }
 window.addEventListener('keydown', onKey, true);
@@ -108,13 +109,32 @@ var controls = new THREE.VRControls(camera);
 var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
 
+
+var geometry = new THREE.SphereGeometry(9000, 60, 40);  
+var material = new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('res/skySphere.jpg') } );
+
+
+skyBox = new THREE.Mesh(geometry, material);  
+//Flip so it's internally textured.
+skyBox.scale.set(-1, 1, 1);  
+skyBox.eulerOrder = 'XZY';  
+skyBox.renderDepth = 1000.0;  
+scene.add(skyBox);  
+
+
 // Create a VR manager helper to enter and exit VR mode.
 var params = {
   hideButton: false, // Default: false.
 
   isUndistorted: false // Default: false.
 };
+
+
 var manager = new WebVRManager(renderer, effect, params);
+
+// Set up raycaster to hilight planets
+var raycaster = new THREE.Raycaster();
+var fakemouse = new THREE.Vector2(0, 0);
 
 // Request animation frame loop function
 var lastRender = 0;
@@ -124,6 +144,17 @@ function animate(timestamp) {
 
   // Update VR headset position and apply to camera.
   controls.update();
+
+  // make sure the planets have their colours reset if not looked at
+  for (var i=1; i<scene.children.length; i++)
+    scene.children[i].material.emissive = {"r":0, "b":0, "g":0};
+
+  // Find planet under cursor and make it green
+  raycaster.setFromCamera(fakemouse, camera);
+  var intersectors = raycaster.intersectObjects(scene.children);
+  if (intersectors.length > 0) {
+    intersectors[0].object.material.emissive = {"r":0.2, "b":0.2, "g":0.2};
+  }
 
   // Render the scene through the manager.
   manager.render(scene, camera, timestamp);
