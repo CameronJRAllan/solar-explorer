@@ -7,15 +7,38 @@ body {
 }
 
 .left-div {
+	font-family: sans-serif;
     float: left;
     width: 500px;
     height: auto;
-    margin-right: 8px;
+	margin-left: 100px;
 	text-align:center;
 }
 .right-div {
-    float: left;
+	font-family: sans-serif;
+    float: right;
 	width: 500px;
-    margin-left: 108px;
+    margin-right: 100px;
 	text-align:center;
 }​
+.title {
+	font-family: sans-serif;
+	width: auto;
+	/* color:#22bed7; */
+	color: #666666;
+	/* font-size:50px; */
+	font-size: 60px;
+	float: centre;
+	max-height: 100px;
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 25px;
+	padding-right: 10px;
+	text-decoration: none;
+}
+.footer {
+	font-family: sans-serif;
+	}
+.wrapper .title p {
+	font-size: 36px;
+}
