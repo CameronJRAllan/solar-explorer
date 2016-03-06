@@ -117,6 +117,10 @@ var params = {
 };
 var manager = new WebVRManager(renderer, effect, params);
 
+// Set up raycaster to hilight planets
+var raycaster = new THREE.Raycaster();
+var fakemouse = new THREE.Vector2(0, 0);
+
 // Request animation frame loop function
 var lastRender = 0;
 function animate(timestamp) {
@@ -125,6 +129,17 @@ function animate(timestamp) {
 
   // Update VR headset position and apply to camera.
   controls.update();
+
+  // make sure the planets have their colours reset if not looked at
+  for (var i=1; i<scene.children.length; i++)
+    scene.children[i].material.emissive = {"r":0, "b":0, "g":0};
+
+  // Find planet under cursor and make it green
+  raycaster.setFromCamera(fakemouse, camera);
+  var intersectors = raycaster.intersectObjects(scene.children);
+  if (intersectors.length > 0) {
+    intersectors[0].object.material.emissive = {"r":0.2, "b":0.2, "g":0.2};
+  }
 
   // Render the scene through the manager.
   manager.render(scene, camera, timestamp);
