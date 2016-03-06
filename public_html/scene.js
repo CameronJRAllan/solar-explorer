@@ -4,7 +4,7 @@ function getPlanetData(when, callback) {
   // Extract the relivant variables
   var year = when.getFullYear();
   var month = when.getMonth();
-  var day = when.getDay();
+  var day = when.getDate();
   var hour = when.getHours();
 
   // The request url
@@ -21,6 +21,9 @@ function getPlanetData(when, callback) {
 var planets = [];
 var planetMap = {};
 var time = new Date();
+
+// The planet that we are currently looking at
+var targetPlanet = null;
 
 // Invoked when the window loads and the app can be started
 $(window).load(function() {
@@ -65,11 +68,13 @@ function onKey(event) {
   // key ','
   if (event.keyCode == 188) {
     // Lower the date by 10 days
-    time.setDate(time.getDate() - 1);
+    console.log("< key");
+    time.setTime(time.getTime() - (1000*60*60*24));
     updatePlanets();
   } else if (event.keyCode == 190){
     // Lower the date by 10 days
-    time.setDate(time.getDate() + 1);
+    console.log("> key");
+    time.setTime(time.getTime() + (1000*60*60*24));
     updatePlanets();
   }
 }
@@ -90,7 +95,7 @@ scene.add( new THREE.AmbientLight(0x444444));
 
 // Create the camera.
 var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 10000);
-camera.rotation.y = 0;//3.1412/2;
+camera.rotation.z = 60;//3.1412/2;
 camera.position.x = 0;//200;
 camera.position.y = 0;//200;
 camera.position.z = 0;
