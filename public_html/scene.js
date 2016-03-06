@@ -66,16 +66,18 @@ function updatePlanets() {
 // Function that gets called whenever a key is pressed down
 function onKey(event) {
   // key ','
-  if (event.keyCode == 188) {
+  if (event.keyCode == 188) { // <
     // Lower the date by 10 days
     console.log("< key");
     time.setTime(time.getTime() - (1000*60*60*24));
     updatePlanets();
-  } else if (event.keyCode == 190){
+  } else if (event.keyCode == 190){ // >
     // Lower the date by 10 days
     console.log("> key");
     time.setTime(time.getTime() + (1000*60*60*24));
     updatePlanets();
+  } else if (event.keyCode == 90){ //Z
+    //controls.zeroSensor();
   }
 }
 window.addEventListener('keydown', onKey, true);
