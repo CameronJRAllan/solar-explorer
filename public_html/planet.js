@@ -1,19 +1,20 @@
 // Global variables
-var GLOBAL_SCALE = 50;
+var DIAMETER_SCALE = 50;
 var WIREFRAME = false;
 var MESH_SCALE = 100;
+var DISTANCE_SCALE = 2000;
 
 // Constructor for the planet object
 function planet(planetName, planetVector, planetDiameter, planetColour, planetType)
 {
     // Store member variables
     this.name = planetName;
-    this.position = new THREE.Vector3(planetVector[0] * GLOBAL_SCALE, planetVector[1] * GLOBAL_SCALE, planetVector[2] * GLOBAL_SCALE);
+    this.position = new THREE.Vector3(planetVector[0] * DISTANCE_SCALE, planetVector[1] * DISTANCE_SCALE, planetVector[2] * DISTANCE_SCALE);
     this.diameter = planetDiameter/1000;
     this.colour = planetColour;
 
     // Create the geometry for this planet
-    this.geometry = new THREE.SphereGeometry(toAstronomicalUnits(planetDiameter) * 0.5 * GLOBAL_SCALE, 32, 32);
+    this.geometry = new THREE.SphereGeometry(toAstronomicalUnits(planetDiameter) * 0.5 * DIAMETER_SCALE, 32, 32);
 
 
     var heightMap;
@@ -55,7 +56,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
         heightMap = textures.solidTex;
 }
 
-    
+
     heightMap.anisotropy = 4;
     heightMap.repeat.set( 0.998, 0.998 );
     heightMap.offset.set( 0.001, 0.001 );
@@ -68,7 +69,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
     this.material = new THREE.MeshLambertMaterial(args);
     this.material.color = new THREE.Color(planetColour);
     this.material.map = heightMap;
-    this.material.colour 
+    this.material.colour
 
     // Create the mesh for this planet.
     this.mesh = new THREE.Mesh(this.geometry, this.material);
@@ -81,6 +82,11 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
     //};
 
     // Set the position of this
+    this.setPosition = function(x, y, z) {
+      this.position = new THREE.Vector3(x, y, z);
+      this.mesh.position.set(x,y,z);
+    }
+
 }
 
 
