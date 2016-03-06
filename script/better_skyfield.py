@@ -41,7 +41,7 @@ information.append({
   "vector":   jupiter.at(date).position.au.tolist(),
   "diameter": 142984,
   "colour":   ["A99781","CFB091"],
-  "planetType": "solid"
+  "planetType": "gas"
 })
 
 information.append({
@@ -89,7 +89,7 @@ information.append({
   "vector":   saturn.at(date).position.au.tolist(),
   "diameter": 120536,
   "colour":   ["B09E69","797864"],
-  "planetType": "solid"
+  "planetType": "gas"
 })
 information.append({
   "name":     "Venus",
@@ -103,7 +103,7 @@ information.append({
   "vector":   uranus.at(date).position.au.tolist(),
   "diameter": 50724,
   "colour":   ["C8EEF1","02AAEA"],
-  "planetType": "solid"
+  "planetType": "gas"
 })
 
 #dump the json

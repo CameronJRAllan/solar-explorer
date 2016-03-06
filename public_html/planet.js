@@ -19,7 +19,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
     var heightMap;
 
     // Load the texture (Maybe this should only be done once.....?)
-    switch(this.planetType) {
+    switch(planetType) {
     case "earth":
         heightMap = new THREE.TextureLoader().load("res/planetEarth.jpg");
         break;
@@ -31,7 +31,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
         break;
     default:
         //Default to solid.
-        default heightMap = new THREE.TextureLoader().load("res/planetSolid.jpg");  
+        heightMap = new THREE.TextureLoader().load("res/planetSolid.jpg");  
 }
 
     

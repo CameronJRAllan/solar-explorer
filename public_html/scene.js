@@ -54,7 +54,7 @@ function updatePlanets() {
         planetMap[item.name] = planetObj;
 
         // Add the planet to the scene
-        scene.add(this.planets[i].getMesh());
+        scene.add(this.planets[i].mesh);
       }
     }
   });
