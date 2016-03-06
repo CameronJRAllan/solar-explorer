@@ -1,6 +1,6 @@
 // Global variables
 var GLOBAL_SCALE = 50;
-var WIREFRAME = true;
+var WIREFRAME = false;
 var MESH_SCALE = 100;
 
 // Constructor for the planet object
