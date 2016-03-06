@@ -9,7 +9,7 @@ body {
 .left-div {
 	font-family: sans-serif;
     float: left;
-    width: 500px;
+    width: 300px;
     height: auto;
 	margin-left: 100px;
 	text-align:center;
@@ -17,7 +17,7 @@ body {
 .right-div {
 	font-family: sans-serif;
     float: right;
-	width: 500px;
+	width: 300px;
     margin-right: 100px;
 	text-align:center;
 }​
@@ -40,5 +40,10 @@ body {
 	font-family: sans-serif;
 	}
 .wrapper .title p {
-	font-size: 36px;
+	font-size: 60px;
+}
+.begin p strong {
+	font-size: 50px;
+		font-family: 'Amaranth', sans-serif;
+
 }
