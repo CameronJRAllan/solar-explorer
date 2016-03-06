@@ -40,5 +40,10 @@ body {
 	font-family: sans-serif;
 	}
 .wrapper .title p {
-	font-size: 36px;
+	font-size: 60px;
+}
+.begin p strong {
+	font-size: 50px;
+		font-family: 'Amaranth', sans-serif;
+
 }
