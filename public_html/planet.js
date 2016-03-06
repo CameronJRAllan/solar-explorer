@@ -48,7 +48,6 @@ function planet(planetName, planetVector, planetDiameter, planetColour)
 }
 
 // Converts input kilometers to astronomical units
-function toAstronomicalUnits(km)
-{
+function toAstronomicalUnits(km) {
   return km * Math.pow(6.68459,-9)
 }
