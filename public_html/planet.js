@@ -15,7 +15,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour)
     // Create the geometry for this planet
     this.geometry = new THREE.SphereGeometry(toAstronomicalUnits(planetDiameter) * 0.5 * GLOBAL_SCALE, 32, 32);
 
-    // Load the texture (Maybe this should only be done once.....?)
+    // Load the heightmap (Maybe this should only be done once.....?)
     var heightMap = new THREE.TextureLoader().load("res/planetBump.jpg");
     heightMap.anisotropy = 4;
     heightMap.repeat.set( 0.998, 0.998 );
@@ -27,7 +27,7 @@ function planet(planetName, planetVector, planetDiameter, planetColour)
     var args = {};
     if (WIREFRAME == true) args['wireframe'] = true;
     this.material = new THREE.MeshLambertMaterial(args);
-    this.material.color = new THREE.Color(planetColour);
+    this.material.color = new THREE.Color(this.colour);
     this.material.map = heightMap;
 
     // Create the mesh for thus planet
@@ -35,19 +35,17 @@ function planet(planetName, planetVector, planetDiameter, planetColour)
     this.mesh.position.set(this.position.x, this.position.y, this.position.z);
     this.mesh.scale.set(MESH_SCALE, MESH_SCALE, MESH_SCALE);
 
-    // Renders this planet into the scene
-    //this.render = function (name) {
-    //    this.lastName = name;
-    //};
+    // Set the position of this planet
+    this.setPosition = function(x, y, z) {
+      this.position = new THREE.Vector3(x * GLOBAL_SCALE, y * GLOBAL_SCALE, z * GLOBAL_SCALE);
+      this.mesh.position.set(this.position.x, this.position.y, this.position.z);
+    };
 
-    // Set the position of this
+    // Returns the mesh for this planet
+    this.getMesh = function() {
+      return this.mesh;
+    }
 }
-
-
-
-//Example usage
-//var earth = new planet("Earth","vector", 221321);
-//earth.retCirc();
 
 // Converts input kilometers to astronomical units
 function toAstronomicalUnits(km)

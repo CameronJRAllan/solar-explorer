@@ -1,4 +1,3 @@
-
 // Calls the web service and invokes the callback when the response in recieved
 // The callback looks like this: function(data) where data is an array of objects
 function getPlanetData(year, month, day, hour, callback) {
@@ -26,8 +25,6 @@ function getPlanetDataNow(callback) {
   getPlanetData(year, month, day, hour, callback);
 }
 
-
-
 // Invoked when the window loads and the app can be started
 $(window).load(function() {
   // Call the web service to get the planet data and pass the response onto GL to create the planets
@@ -36,30 +33,26 @@ $(window).load(function() {
   });
 });
 
+// All of the planets in the array
+var planets = [];
+var planetMap = {};
 
-var planetArr = [];  //This needs ot be global?!
-
-
+// Creates all of th planets. If the planets already exist then this function will update the positions
 function createPlanets(planets) {
-   console.log("Entering createPlanets");	//DEBUG
-
-  //Create planet array to render.
-   console.log(planets.length);
-
-   // Iterate through all of the
+   // Iterate through all of the planets source data
    for (index in planets) {
-    // Get the current planet
-    var jPlanet = planets[index];
-    console.log(jPlanet.name);
-    //console.log(jPlanet);
+     // Get the current item
+     var item = planets[index];
 
-    //console.log(jPlanet);
+     // Create a planet object
+     var planetObj = new planet(item.name, item.vector, item.diameter, item.colour)
 
+      // Store the planet for future reference
+      this.planets[index] = planetObj
+      this.planetMap[planet.name] = planetObj;
 
-    //Add this planet to the array.
-    this.planetArr[index] = new planet(jPlanet.name, jPlanet.vector, jPlanet.diameter, jPlanet.colour)
-
-      scene.add(this.planetArr[index].mesh);
+      // Add the planet to the scene
+      scene.add(this.planets[index].getMesh());
     }
 }
 
@@ -73,15 +66,13 @@ document.body.appendChild(renderer.domElement);
 
 // Create a three.js scene.
 var scene = new THREE.Scene();
-scene.add( new THREE.AmbientLight( 0x444444 ) );
+scene.add( new THREE.AmbientLight(0x444444));
 
-// Create a three.js camera.
+// Create the camera.
 var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 10000);
 camera.position.y = 200;
 camera.position.x = 200;
 camera.rotationY = 3.1412/2;
-
-
 
 // Apply VR headset positional data to camera.
 var controls = new THREE.VRControls(camera);
