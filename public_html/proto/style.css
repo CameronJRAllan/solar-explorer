@@ -1,0 +1,21 @@
+@charset "utf-8";
+body {
+	font-family: 'Amaranth', sans-serif;
+	background-color: black;
+	text-align: center;
+	color: #999;
+}
+
+.left-div {
+    float: left;
+    width: 500px;
+    height: auto;
+    margin-right: 8px;
+	text-align:center;
+}
+.right-div {
+    float: left;
+	width: 500px;
+    margin-left: 108px;
+	text-align:center;
+}​
