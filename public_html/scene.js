@@ -105,14 +105,14 @@ camera.position.z = 0;
 // Apply VR headset positional data to camera.
 var controls = new THREE.VRControls(camera);
 
+
+//Skybox.
 // Apply VR stereo rendering to renderer.
 var effect = new THREE.VREffect(renderer);
 effect.setSize(window.innerWidth, window.innerHeight);
 
-
 var geometry = new THREE.SphereGeometry(9000, 60, 40);  
 var material = new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('res/skySphere.jpg') } );
-
 
 skyBox = new THREE.Mesh(geometry, material);  
 //Flip so it's internally textured.
@@ -120,6 +120,12 @@ skyBox.scale.set(-1, 1, 1);
 skyBox.eulerOrder = 'XZY';  
 skyBox.renderDepth = 1000.0;  
 scene.add(skyBox);  
+
+
+//star light
+var light = new THREE.PointLight( 0xffffff, 1, 10000 );
+light.position.set( 0, 0, 0 );
+scene.add( light );
 
 
 // Create a VR manager helper to enter and exit VR mode.

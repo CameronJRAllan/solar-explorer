@@ -19,19 +19,40 @@ function planet(planetName, planetVector, planetDiameter, planetColour, planetTy
     var heightMap;
 
     // Load the texture (Maybe this should only be done once.....?)
-    switch(planetType) {
+    
+    switch(this.name) {
     case "earth":
-        heightMap = new THREE.TextureLoader().load("res/planetEarth.jpg");
+        heightMap = textures.earthTex;
         break;
-    case "gas":
-        heightMap = new THREE.TextureLoader().load("res/planetGas.jpg");
+    case "mars":
+        heightMap = textures.marsTex;
         break;
-    case "solid":
-        heightMap = new THREE.TextureLoader().load("res/planetSolid.jpg");
+    case "venusTex":
+        heightMap = textures.venusTex;
+        break;
+    case "mercuryTex":
+        heightMap = textures.mercuryTex;
+        break;
+    case "sunTex":
+        heightMap = textures.sunTex;
+        break;
+    case "jupiterTex":
+        heightMap = textures.jupiterTex;
+        break;
+    case "saturnTex":
+        heightMap = textures.saturnTex;
+        break;
+    case "uranusTex":
+        heightMap = textures.uranusTex;
+        break;
+    case "neptuneTex":
+        heightMap = textures.neptuneTex;
+        break;
+    case "plutoTex":
+        heightMap = textures.plutoTex;
         break;
     default:
-        //Default to solid.
-        heightMap = new THREE.TextureLoader().load("res/planetSolid.jpg");  
+        heightMap = textures.solidTex;
 }
 
     
