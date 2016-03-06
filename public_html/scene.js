@@ -45,9 +45,9 @@ function createPlanets(planets) {
      var item = planets[index];
 
      // Create a planet object
-     var planetObj = new planet(item.name, item.vector, item.diameter, item.colour)
+     var planetObj = new planet(item.name, item.vector, item.diameter, item.colour, item.planetType)
 
-      // Store the planet for future reference
+      // Store throw e planet for future reference
       this.planets[index] = planetObj
       this.planetMap[planet.name] = planetObj;
 
