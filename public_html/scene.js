@@ -162,7 +162,6 @@ var params = {
 
   // Move the camera to face the planet
   updateView();
-}
 
 // Updates the view of the camera
 function updateView() {

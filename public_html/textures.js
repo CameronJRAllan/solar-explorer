@@ -8,7 +8,7 @@ this.jupiterTex = new THREE.TextureLoader().load("res/planetJupiter.jpg");
 this.saturnTex = new THREE.TextureLoader().load("res/planetSuturn.jpg");
 this.uranusTex = new THREE.TextureLoader().load("res/planetJupiter.jpg");
 this.neptuneTex = new THREE.TextureLoader().load("res/planetSuturn.jpg");
-this.plutoTex = new Three.TextureLoader().load("res/planetSuturn.jpg");
+this.plutoTex = new THREE.TextureLoader().load("res/planetSuturn.jpg");
 
 this.gasTex = new THREE.TextureLoader().load("res/planetGas.jpg");
 this.solidTex = new THREE.TextureLoader().load("res/planetSolid.jpg");
