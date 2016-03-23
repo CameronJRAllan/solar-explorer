@@ -158,7 +158,7 @@ var params = {
 };
 
   // Set the target
-  target = newtarget;
+  //target = newtarget;
 
   // Move the camera to face the planet
   updateView();
@@ -240,7 +240,7 @@ function main() {
   var fakemouse = new THREE.Vector2(0, 0);
 
 
-    targetPlanet("Earth");
+    //targetPlanet("Earth");
   // Request animation frame loop function
   var lastRender = 0;
   function animate(timestamp) {
